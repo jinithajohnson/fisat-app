@@ -10,13 +10,19 @@ const Viewtud = () => {
         ]
     )
 const fetchData=()=>{
-    axios.get("https://anishpdm.github.io/dummy-api-new/student.json").then(
+    axios.get("https://courseapplogix.onrender.com/getdata").then(
         (response)=>{
             changeData(response.data)
         }
 
 
-    ).catch().finally()
+    ).catch(
+        (error) => {
+          console.log(error.message)
+          
+        }
+
+    ).finally()
 }
 
 useEffect(()=>{fetchData()},[])
@@ -55,7 +61,7 @@ useEffect(()=>{fetchData()},[])
                             <td>{value.college}</td>
                             <td>{value.dob}</td>
                             <td>{value.course}</td>
-                            <td>{value.mobile}</td>
+                            <td>{value.mobileNo}</td>
                             <td>{value.email}</td>
                             <td>{value.address}</td>
                             <td>{value.__v}</td>

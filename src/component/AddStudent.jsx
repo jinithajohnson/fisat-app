@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar'
+import axios from 'axios'
 
 const AddStudent = () => {
     const [data,setData] = useState(
         {
-            "firstName" : "",
+            "firstname" : "",
             "lastname" : "",
             "college" : "",
             "dob"     : "",
@@ -23,6 +24,18 @@ const AddStudent = () => {
 
         const readValue = () => {
             console.log(data)
+            axios.post(" https://courseapplogix.onrender.com/addstudents",data).then(
+                (response)=>{
+                    console.log(response)
+                    if(response.data.status=="success") {
+                        alert("success")
+
+                    }
+                    else{
+                        alert("Error")
+                    }
+                }
+            ).catch()
         
     }
   return (
@@ -35,14 +48,14 @@ const AddStudent = () => {
 <div className="row g-3">
     <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
         <label htmlFor="" className="input-label" >First name</label>
-        <input type="text" className="form-control" name='firstName' value={data.firstName} onChange={inputHandler} />
+        <input type="text" className="form-control" name='firstname' value={data.firstname} onChange={inputHandler} />
 
 
 
     </div>
     <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
             <label htmlFor="" className="form-label" >Last name</label>
-            <input type="text" className="form-control" name='lastName' value={data.lastname} onChange={inputHandler}/>
+            <input type="text" className="form-control" name='lastname' value={data.lastname} onChange={inputHandler}/>
 
 
     </div>
